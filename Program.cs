@@ -31,13 +31,13 @@ public class Program
         int headerAndFooterWordsCount = InputValidators.ValidateIntParameter(headerAndFooterWordsCountStr);
 
         IPageEstimator estimator = new PageEstimator();
-        int totalPages = await estimator.GetEstimatePageCount(new PageEstimationRequest {
+        PageEstimationResponse response = await estimator.GetEstimatePageCount(new PageEstimationRequest {
             FilePath = filePath,
             FontSize = fontSize,
             PageWidth = pageWidth,
             PageHeight = pageHeight,
             HeaderFooterWords = headerAndFooterWordsCount
         });
-        Console.WriteLine($"=> Estimated pages: {totalPages}");
+        Console.WriteLine($"=> Estimated pages: {response.PageCount}");
     }
 }

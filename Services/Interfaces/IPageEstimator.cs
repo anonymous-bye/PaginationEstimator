@@ -9,6 +9,6 @@ namespace PaginationEstimator.Services.Interfaces
 {
     public interface IPageEstimator
     {
-        Task<int> GetEstimatePageCount(PageEstimationRequest request);
+        Task<PageEstimationResponse> GetEstimatePageCount(PageEstimationRequest request);
     }
 }

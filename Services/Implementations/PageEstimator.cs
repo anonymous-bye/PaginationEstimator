@@ -10,9 +10,11 @@ namespace PaginationEstimator.Services.Implementations
 {
     public class PageEstimator : IPageEstimator
     {
-        public async Task<int> GetEstimatePageCount(PageEstimationRequest request)
+        public async Task<PageEstimationResponse> GetEstimatePageCount(PageEstimationRequest request)
         {
-            int pageCount = 0;
+            var response = new PageEstimationResponse();
+            response.PageCount = 0;
+
             int piecelineCount = 0;
             int wordCountPerLine = (int)Math.Floor(request.PageWidth / request.FontSize);
             int headerLineCount = (int)Math.Ceiling((double)request.HeaderFooterWords / wordCountPerLine);
@@ -28,7 +30,7 @@ namespace PaginationEstimator.Services.Implementations
                     {
                         string line = await reader.ReadLineAsync();
                         piecelineCount += (int)Math.Ceiling((double)line.Count() / wordCountPerLine);
-                        pageCount += piecelineCount / bodyLinePerPage;
+                        response.PageCount += piecelineCount / bodyLinePerPage;
                         piecelineCount = piecelineCount % bodyLinePerPage;
                     }
                 }
@@ -36,9 +38,9 @@ namespace PaginationEstimator.Services.Implementations
 
             if (piecelineCount > 0)
             {
-                pageCount++;
+                response.PageCount++;
             }
-            return pageCount;
+            return response;
         }
     }
 }
