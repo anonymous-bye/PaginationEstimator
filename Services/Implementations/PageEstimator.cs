@@ -1,11 +1,12 @@
 ﻿using PaginationEstimator.Models;
+using PaginationEstimator.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PaginationEstimator.Services
+namespace PaginationEstimator.Services.Implementations
 {
     public class PageEstimator : IPageEstimator
     {
@@ -26,7 +27,7 @@ namespace PaginationEstimator.Services
                     while (!reader.EndOfStream)
                     {
                         string line = await reader.ReadLineAsync();
-                        piecelineCount += (int)(Math.Ceiling((double)line.Count() / wordCountPerLine));
+                        piecelineCount += (int)Math.Ceiling((double)line.Count() / wordCountPerLine);
                         pageCount += piecelineCount / bodyLinePerPage;
                         piecelineCount = piecelineCount % bodyLinePerPage;
                     }

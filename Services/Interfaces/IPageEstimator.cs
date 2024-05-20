@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PaginationEstimator.Services
+namespace PaginationEstimator.Services.Interfaces
 {
     public interface IPageEstimator
     {

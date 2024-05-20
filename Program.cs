@@ -1,6 +1,8 @@
 ﻿using PaginationEstimator;
 using PaginationEstimator.Models;
 using PaginationEstimator.Services;
+using PaginationEstimator.Services.Implementations;
+using PaginationEstimator.Services.Interfaces;
 using System;
 using System.Reflection.Metadata;
 
